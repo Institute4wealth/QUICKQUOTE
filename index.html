@@ -18,12 +18,12 @@
     padding: 10px;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* align top for scrolling */
+    align-items: flex-start;
     min-height: 100vh;
     position: relative;
   }
 
-  /* Background particles fixed so scrollable content works */
+  /* Background particles fixed for scrollable content */
   body::before {
     content: '';
     position: fixed;
@@ -48,7 +48,7 @@
     max-width: 450px;
     overflow: hidden;
     z-index: 0;
-    margin-bottom: 50px; /* extra spacing for scrolling */
+    margin-bottom: 50px;
   }
   .form-container::before {
     content: '';
@@ -76,7 +76,7 @@
     z-index:0;
   }
 
-  /* Pulsing neon header */
+  /* Pulsing neon header for desktop */
   h1 {
     position: relative;
     text-align: center;
@@ -96,6 +96,7 @@
     100% { text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00; }
   }
 
+  /* Form labels */
   label {
     display: block;
     margin-bottom: 6px;
@@ -107,6 +108,7 @@
     z-index: 1;
   }
 
+  /* Inputs and selects with pulsing effect */
   input, select {
     width: 100%;
     padding: 12px;
@@ -138,6 +140,7 @@
     100% { box-shadow: 0 0 15px #00ff00aa inset; }
   }
 
+  /* Button styling */
   button {
     width: 100%;
     padding: 14px;
@@ -161,12 +164,16 @@
     box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff0044 inset;
   }
 
+  /* Responsive tweaks for mobile/iPhone */
   @media (max-width: 480px) {
     .form-container {
       padding: 20px 15px;
     }
     h1 {
       font-size: 20px;
+      -webkit-text-stroke: 0.5px #00ff00; /* thinner stroke */
+      animation: none; /* remove pulsing glow */
+      text-shadow: none; /* remove extra shadow */
     }
   }
 </style>
@@ -238,22 +245,3 @@ form.addEventListener('submit', async function(e) {
     return;
   }
 
-  const formData = new FormData(form);
-  try {
-    const response = await fetch(form.action, {
-      method: form.method,
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    });
-    if (response.ok) {
-      window.location.href = "https://institute4wealth.com";
-    } else {
-      alert('Oops! Something went wrong. Please try again.');
-    }
-  } catch (error) {
-    alert('Oops! Something went wrong. Please try again.');
-  }
-});
-</script>
-</body>
-</html>
