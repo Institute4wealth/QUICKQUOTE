@@ -18,16 +18,15 @@
     padding: 10px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* align top for scrolling */
     min-height: 100vh;
-    overflow: hidden;
     position: relative;
   }
 
-  /* Background particles */
+  /* Background particles fixed so scrollable content works */
   body::before {
     content: '';
-    position: absolute;
+    position: fixed;
     top:0; left:0; width:100%; height:100%;
     background: radial-gradient(circle, #00ff0040 1px, transparent 1px);
     background-size: 20px 20px;
@@ -49,6 +48,7 @@
     max-width: 450px;
     overflow: hidden;
     z-index: 0;
+    margin-bottom: 50px; /* extra spacing for scrolling */
   }
   .form-container::before {
     content: '';
