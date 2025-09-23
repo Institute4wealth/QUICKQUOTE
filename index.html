@@ -3,78 +3,157 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Life Insurance Quote</title>
+<title>INSTITUTE4WEALTH Quote</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
   body {
-    font-family: Arial, sans-serif;
-    background: #f0f2f5;
+    font-family: 'Orbitron', sans-serif;
+    background: #000;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
   }
+
+  /* Animated neon border around form */
   .form-container {
-    background: #fff;
-    padding: 30px;
+    background: #000;
+    padding: 40px 30px;
     border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-    width: 100%;
-    max-width: 400px;
-  }
-  h2 { text-align: center; margin-bottom: 20px; color: #333; }
-  label { display: block; margin-bottom: 6px; font-weight: bold; color: #444; }
-  input, select { width: 100%; padding: 10px; margin-bottom: 18px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; }
-  button { width: 100%; padding: 12px; background: #0073e6; color: #fff; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; transition: background 0.3s ease; }
-  button:hover { background: #005bb5; }
-
-  /* Inline radio buttons */
-  .contact-method {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 18px;
-  }
-  .contact-method label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: normal;
-  }
-
-  .message {
     position: relative;
-    opacity: 0;
-    max-height: 0;
+    width: 100%;
+    max-width: 450px;
     overflow: hidden;
-    text-align: center;
-    font-weight: bold;
-    margin-top: 20px;
-    padding: 10px 20px;
-    border-radius: 6px;
-    transition: opacity 0.6s ease, max-height 0.6s ease;
+    z-index: 0;
   }
-  .message.show { opacity: 1; max-height: 100px; }
-  .success-message { color: green; background: #e6f9e6; }
-  .error-message { color: red; background: #fde6e6; }
-  .close-btn { position: absolute; top: 5px; right: 10px; font-weight: bold; cursor: pointer; background: transparent; border: none; font-size: 16px; color: inherit; }
+  .form-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, #00ff00, #00ff88, #00ff00, #00ff88);
+    background-size: 400% 400%;
+    animation: neonBorder 6s linear infinite;
+    z-index: -1;
+  }
+  @keyframes neonBorder {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
+  .form-container::after {
+    content:'';
+    position:absolute;
+    top:0; left:0; right:0; bottom:0;
+    border-radius:12px;
+    background:#000;
+    z-index:0;
+  }
+
+  /* Pulsing neon header */
+  h1 {
+    position: relative;
+    text-align: center;
+    font-size: 28px;
+    color: transparent;
+    -webkit-text-stroke: 1px #00ff00;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    z-index: 1;
+    animation: neonPulse 1.8s ease-in-out infinite alternate;
+  }
+  @keyframes neonPulse {
+    0% {
+      text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
+    }
+    50% {
+      text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff88;
+    }
+    100% {
+      text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
+    }
+  }
+
+  label {
+    display: block;
+    margin-bottom: 6px;
+    color: #00ff00;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 13px;
+    position: relative;
+    z-index: 1;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #00ff00;
+    border-radius: 6px;
+    background: #000;
+    color: #00ff00;
+    font-size: 15px;
+    box-shadow: 0 0 10px #00ff0077 inset;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  input::placeholder {
+    color: #00ff0077;
+  }
+
+  input:focus, select:focus {
+    outline: none;
+    border-color: #00ff00;
+    box-shadow: 0 0 15px #00ff00aa inset;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px;
+    background: transparent;
+    color: #00ff00;
+    border: 2px solid #00ff00;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px #00ff0077;
+    position: relative;
+    z-index: 1;
+  }
+
+  button:hover {
+    background: #00ff0022;
+    box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff0044 inset;
+  }
 </style>
 </head>
 <body>
+
 <div class="form-container">
-  <h2> Quick Quote </h2>
+  <h1>INSTITUTE4WEALTH</h1>
   <form id="insurance-form" action="https://formspree.io/f/xgvnwjby" method="POST">
     <label for="first_name">First Name</label>
-    <input type="text" id="first_name" name="first_name" required>
+    <input type="text" id="first_name" name="first_name" placeholder="John" required>
 
     <label for="age">Age</label>
-    <input type="number" id="age" name="age" min="18" max="100" required>
+    <input type="number" id="age" name="age" min="18" max="100" placeholder="30" required>
 
-    <label for="gender">Gender (optional)</label>
-    <select id="gender" name="gender">
+    <label for="gender">Gender at Birth</label>
+    <select id="gender" name="gender" required>
       <option value="">-- Select --</option>
-      <option value="He/Him">He/Him</option>
-      <option value="She/Her">She/Her</option>
-      <option value="They/Them">They/Them</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
     </select>
 
     <label for="smoker">Do you smoke?</label>
@@ -93,54 +172,23 @@
       <option value="$1,000,000">$1,000,000</option>
     </select>
 
-    <!-- Inline radio buttons for contact method -->
-    <label>Preferred Contact Method:</label>
-    <div class="contact-method">
-      <label><input type="radio" name="contact_method" value="email" required> Email</label>
-      <label><input type="radio" name="contact_method" value="phone"> Phone</label>
-    </div>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="your@email.com" required>
 
-    <input type="email" id="email" name="email" placeholder="your@email.com" style="display:none;">
-    <input type="tel" id="phone" name="phone" placeholder="(123)456-7890" style="display:none;">
+    <label for="phone">Phone</label>
+    <input type="tel" id="phone" name="phone" placeholder="(123)456-7890" required>
 
     <button type="submit">Get Quote</button>
   </form>
-
-  <div class="message success-message" id="success-message">
-    🎉 Thank you! Your request has been submitted.
-    <button class="close-btn" onclick="closeMessage('success-message')">×</button>
-  </div>
-  <div class="message error-message" id="error-message">
-    ❌ Oops! Something went wrong. Please try again.
-    <button class="close-btn" onclick="closeMessage('error-message')">×</button>
-  </div>
 </div>
 
 <script>
 const form = document.getElementById('insurance-form');
-const successMessage = document.getElementById('success-message');
-const errorMessage = document.getElementById('error-message');
-const emailInput = document.getElementById('email');
 const phoneInput = document.getElementById('phone');
 
-// Show correct input based on radio selection
-document.querySelectorAll('input[name="contact_method"]').forEach(radio => {
-  radio.addEventListener('change', () => {
-    if(radio.value === 'email') {
-      emailInput.style.display = 'block';
-      phoneInput.style.display = 'none';
-      phoneInput.value = '';
-    } else {
-      phoneInput.style.display = 'block';
-      emailInput.style.display = 'none';
-      emailInput.value = '';
-    }
-  });
-});
-
-// Auto-format phone as (123)456-7890 while typing
+// Auto-format phone as (123)456-7890
 phoneInput.addEventListener('input', e => {
-  let x = e.target.value.replace(/\D/g,'').substring(0,10); // digits only
+  let x = e.target.value.replace(/\D/g,'').substring(0,10); 
   let formatted = '';
   if(x.length > 0) formatted = '(' + x.substring(0,3);
   if(x.length >= 4) formatted += ')' + x.substring(3,6);
@@ -148,25 +196,11 @@ phoneInput.addEventListener('input', e => {
   e.target.value = formatted;
 });
 
-// Show/hide messages
-function showMessage(messageElement) {
-  messageElement.classList.add('show');
-  setTimeout(() => { messageElement.classList.remove('show'); }, 5000);
-}
-function closeMessage(id) {
-  document.getElementById(id).classList.remove('show');
-}
-
-// Form submission with validation
+// Form submission with redirect
 form.addEventListener('submit', async function(e) {
   e.preventDefault();
-  const contactMethod = document.querySelector('input[name="contact_method"]:checked').value;
 
-  if(contactMethod === 'email' && !emailInput.value) {
-    alert('Please enter a valid email.');
-    return;
-  }
-  if(contactMethod === 'phone' && !phoneInput.value.match(/\(\d{3}\)\d{3}-\d{4}/)) {
+  if(!phoneInput.value.match(/\(\d{3}\)\d{3}-\d{4}/)) {
     alert('Please enter a valid phone number in the format (123)456-7890.');
     return;
   }
@@ -179,18 +213,13 @@ form.addEventListener('submit', async function(e) {
       headers: { 'Accept': 'application/json' }
     });
     if (response.ok) {
-      showMessage(successMessage);
-      errorMessage.classList.remove('show');
-      form.reset();
-      emailInput.style.display = 'none';
-      phoneInput.style.display = 'none';
+      // Redirect after successful submission
+      window.location.href = "https://institute4wealth.com";
     } else {
-      showMessage(errorMessage);
-      successMessage.classList.remove('show');
+      alert('Oops! Something went wrong. Please try again.');
     }
   } catch (error) {
-    showMessage(errorMessage);
-    successMessage.classList.remove('show');
+    alert('Oops! Something went wrong. Please try again.');
   }
 });
 </script>
