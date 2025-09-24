@@ -31,6 +31,14 @@
             color: #ffffff;
         }
 
+        /* New class for the golden metallic text effect */
+        .text-golden-metallic {
+            background: linear-gradient(180deg, #f0e68c, #c0a058, #f0e68c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 5px rgba(255, 215, 0, 0.4);
+        }
+
         .scroll-container {
             height: 100vh;
             overflow-y: scroll;
@@ -280,7 +288,7 @@
         <!-- Section 1: Attention -->
         <section id="attention" class="scroll-section bg-black flex flex-col justify-center items-center text-center p-0">
             <div class="bg-black px-8 py-8 sm:px-16 sm:py-16 rounded-xl shadow-lg max-w-sm sm:max-w-xl flex flex-col items-center justify-center">
-                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase font-bold text-red-500 mb-2 js-animate-title">INSTITUTE4WEALTH</h1>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase font-bold text-golden-metallic mb-2 js-animate-title">INSTITUTE4WEALTH</h1>
                 <p class="text-lg sm:text-xl md:text-2xl leading-relaxed max-w-xs sm:max-w-sm mx-auto text-white">Your path to financial power. This is your one-stop destination for building wealth, securing your future, and protecting the legacy you want to leave behind.</p>
             </div>
         </section>
@@ -291,7 +299,7 @@
                 <!-- IUL Website Content Section, with luxury branding -->
                 <div class="mt-4 w-full text-center">
                     <!-- Hero Headline + Subheadline -->
-                    <h2 class="text-5xl uppercase font-bold text-green-500 mb-2 js-animate-title">Your Legacy, Elevated</h2>
+                    <h2 class="text-5xl uppercase font-bold text-golden-metallic mb-2 js-animate-title">Your Legacy, Elevated</h2>
                     <p class="text-xl leading-relaxed text-center text-white mb-4">
                         Crafting a masterpiece of financial security and timeless elegance.
                     </p>
@@ -304,15 +312,15 @@
                     <!-- Benefits (Luxury Framing) -->
                     <div class="flex flex-col gap-4 mt-8 w-full max-w-lg mx-auto">
                         <div class="bg-[#1a1a1a] p-4 rounded-lg text-left">
-                            <h3 class="text-2xl uppercase font-bold text-green-500 mb-1">The Private Vault</h3>
+                            <h3 class="text-2xl uppercase font-bold text-golden-metallic mb-1">The Private Vault</h3>
                             <p class="text-lg italic text-white">Your wealth,  built, curated and preserved, away from the public gaze.</p>
                         </div>
                         <div class="bg-[#1a1a1a] p-4 rounded-lg text-left">
-                            <h3 class="text-2xl uppercase font-bold text-green-500 mb-1">Couture Design</h3>
+                            <h3 class="text-2xl uppercase font-bold text-golden-metallic mb-1">Couture Design</h3>
                             <p class="text-lg italic text-white">A strategy tailored to move with the dynamism of your lifestyle, not restrict it.</p>
                         </div>
                         <div class="bg-[#1a1a1a] p-4 rounded-lg text-left">
-                            <h3 class="text-2xl uppercase font-bold text-green-500 mb-1">The Timeless Trust</h3>
+                            <h3 class="text-2xl uppercase font-bold text-golden-metallic mb-1">The Timeless Trust</h3>
                             <p class="text-lg italic text-white">A promise of prosperity that endures beyond time, securing the future you envision for those you cherish.</p>
                         </div>
                     </div>
@@ -328,7 +336,7 @@
         <!-- Section 3: Our Services -->
         <section id="services" class="scroll-section bg-black flex-col justify-center items-center text-center">
             <div class="max-w-md mx-auto flex flex-col items-center p-2">
-                <h2 class="text-5xl uppercase font-bold text-green-500 mb-2 js-animate-title">Our Services</h2>
+                <h2 class="text-5xl uppercase font-bold text-golden-metallic mb-2 js-animate-title">Our Services</h2>
                 <p class="text-xl leading-relaxed text-center text-white mt-4">
                     The Institute 4 Wealth, led by Katherine, specializes in building tax-free wealth through sophisticated financial strategies. We offer personalized solutions nationwide, focusing on:
                 </p>
@@ -353,7 +361,7 @@
         <!-- Section 4: Call to Action -->
         <section id="call-to-action" class="scroll-section bg-black">
             <div class="max-w-md mx-auto text-center flex flex-col items-center p-2">
-                <h2 class="text-5xl uppercase font-bold text-green-500 mb-2 js-animate-title">Call to Action</h2>
+                <h2 class="text-5xl uppercase font-bold text-golden-metallic mb-2 js-animate-title">Call to Action</h2>
                 <p class="text-xl leading-relaxed text-center text-white mt-4">
                     Take the next step towards securing your financial future.
                 </p>
@@ -373,8 +381,8 @@
         <footer class="scroll-section bg-black relative flex flex-col justify-center items-center">
             <video class="w-full md:max-w-3xl lg:max-w-4xl h-auto rounded-xl shadow-lg mb-8" src="vidone.mp4" playsinline autoplay muted></video>
             <div class="relative z-10 text-center">
-                <p class="text-5xl md:text-6xl text-green-500 font-bold uppercase js-animate-title">KATHERINE</p>
-                <p class="text-3xl md:text-4xl text-green-500 font-bold uppercase js-animate-title">QUEEN OF HEALTH & WEALTH</p>
+                <p class="text-5xl md:text-6xl text-golden-metallic font-bold uppercase js-animate-title">KATHERINE</p>
+                <p class="text-3xl md:text-4xl text-golden-metallic font-bold uppercase js-animate-title">QUEEN OF HEALTH & WEALTH</p>
             </div>
         </footer>
     </div>
@@ -384,7 +392,7 @@
     <div id="quote-modal" class="modal-overlay">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('quote-modal')">&times;</span>
-            <h2 class="text-5xl uppercase font-bold text-green-500 text-center">Quick Quote</h2>
+            <h2 class="text-5xl uppercase font-bold text-golden-metallic text-center">Quick Quote</h2>
             <p class="text-xl text-center text-white mb-4 w-full">Fill out the form below to get a quick insurance quote.</p>
             <form id="insurance-form">
                 <label class="text-xl text-white block mb-2" for="first_name">First Name</label>
@@ -430,7 +438,7 @@
     <div id="application-modal" class="modal-overlay">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('application-modal')">&times;</span>
-            <h2 class="text-5xl uppercase font-bold text-green-500 text-center">Join Our Team</h2>
+            <h2 class="text-5xl uppercase font-bold text-golden-metallic text-center">Join Our Team</h2>
             <p class="text-xl text-center text-white mb-4 w-full">We're looking for hardworking individuals to join our team. No experience necessary!</p>
             <form id="application-form">
                 <label class="text-xl text-white block mb-2" for="app_name">Full Name</label>
@@ -590,5 +598,3 @@
     </script>
 </body>
 </html>
-
-
