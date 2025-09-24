@@ -1,247 +1,655 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>INSTITUTE4WEALTH Quote</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A single-page, SEO-optimized website for INSTITUTE4WEALTH, led by financial expert Katherine. This site provides information on job opportunities, financial planning, quick insurance quotes, and strategies for building tax-free wealth.">
+    <meta name="keywords" content="Insurance Agent, application, INSTITUTE4WEALTH, job application, financial services, career, Quick Quote, insurance quote, life insurance, Katherine, Born to Win Planner, Queen of Health and Wealth, IUL, financial literacy, infinite banking, asset protection, financial champion, tax-free wealth, retirement planning, estate planning">
 
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
+    <!-- Open Graph Protocol for social media sharing -->
+    <meta property="og:title" content="INSTITUTE4WEALTH & The Queen of Health and Wealth">
+    <meta property="og:description" content="A schema-based, SEO-refined website including an application form, a quick quote calculator, and details about Katherine's financial planning services, including IULs and tax-free wealth strategies.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://placehold.co/1200x630/000000/FFFFFF?text=INSTITUTE4WEALTH">
 
-  body {
-    font-family: 'Orbitron', sans-serif;
-    background: #000;
-    margin: 0;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    position: relative;
-  }
+    <title>INSTITUTE4WEALTH</title>
 
-  /* Background particles fixed for scrollable content */
-  body::before {
-    content: '';
-    position: fixed;
-    top:0; left:0; width:100%; height:100%;
-    background: radial-gradient(circle, #00ff0040 1px, transparent 1px);
-    background-size: 20px 20px;
-    animation: moveBg 20s linear infinite;
-    z-index: -2;
-  }
-  @keyframes moveBg {
-    0% {background-position: 0 0;}
-    100% {background-position: 200px 200px;}
-  }
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  /* Animated neon border around form */
-  .form-container {
-    background: #000;
-    padding: 30px 20px;
-    border-radius: 12px;
-    position: relative;
-    width: 100%;
-    max-width: 450px;
-    overflow: hidden;
-    z-index: 0;
-    margin-bottom: 50px;
-  }
-  .form-container::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, #00ff00, #00ff88, #00ff00, #00ff88);
-    background-size: 400% 400%;
-    animation: neonBorder 6s linear infinite;
-    z-index: -1;
-  }
-  @keyframes neonBorder {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
-  }
-  .form-container::after {
-    content:'';
-    position:absolute;
-    top:0; left:0; right:0; bottom:0;
-    border-radius:12px;
-    background:#000;
-    z-index:0;
-  }
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        setLogLevel('debug');
 
-  /* Pulsing neon header for desktop */
-  h1 {
-    position: relative;
-    text-align: center;
-    font-size: 22px;
-    color: transparent;
-    -webkit-text-stroke: 1px #00ff00;
-    text-transform: uppercase;
-    margin-bottom: 25px;
-    letter-spacing: 2px;
-    z-index: 1;
-    animation: neonPulse 1.8s ease-in-out infinite alternate;
-    word-wrap: break-word;
-  }
-  @keyframes neonPulse {
-    0% { text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00; }
-    50% { text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff88; }
-    100% { text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00; }
-  }
+        // Check for global variables and assign them to local variables
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : '';
+        
+        window.app;
+        window.db;
+        window.auth;
 
-  /* Form labels */
-  label {
-    display: block;
-    margin-bottom: 6px;
-    color: #00ff00;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 13px;
-    position: relative;
-    z-index: 1;
-  }
+        const initFirebase = async () => {
+            try {
+                window.app = initializeApp(firebaseConfig);
+                window.db = getFirestore(window.app);
+                window.auth = getAuth(window.app);
 
-  /* Inputs and selects with pulsing effect */
-  input, select {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #00ff00;
-    border-radius: 6px;
-    background: #000;
-    color: #00ff00;
-    font-size: 15px;
-    box-shadow: 0 0 10px #00ff0077 inset;
-    transition: all 0.3s ease, box-shadow 1s ease-in-out;
-    position: relative;
-    z-index: 1;
-    animation: fieldPulse 2s ease-in-out infinite alternate;
-  }
+                if (initialAuthToken) {
+                    await signInWithCustomToken(window.auth, initialAuthToken);
+                    console.log("Signed in with custom token.");
+                } else {
+                    await signInAnonymously(window.auth);
+                    console.log("Signed in anonymously.");
+                }
 
-  input::placeholder {
-    color: #00ff0077;
-  }
+            } catch (error) {
+                console.error("Firebase initialization failed:", error);
+            }
+        };
 
-  input:focus, select:focus {
-    outline: none;
-    border-color: #00ff00;
-    box-shadow: 0 0 20px #00ff00aa inset;
-  }
+        window.addEventListener('load', initFirebase);
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;700&display=swap');
 
-  @keyframes fieldPulse {
-    0% { box-shadow: 0 0 5px #00ff0077 inset; }
-    100% { box-shadow: 0 0 15px #00ff00aa inset; }
-  }
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #0d1117;
+            overflow-x: hidden;
+            cursor: default;
+            color: #ffffff;
+        }
 
-  /* Button styling */
-  button {
-    width: 100%;
-    padding: 14px;
-    background: transparent;
-    color: #00ff00;
-    border: 2px solid #00ff00;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s ease, box-shadow 1s ease-in-out;
-    box-shadow: 0 0 10px #00ff0077;
-    position: relative;
-    z-index: 1;
-    animation: fieldPulse 2s ease-in-out infinite alternate;
-  }
+        .scroll-container {
+            height: 100vh;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+        }
 
-  button:hover {
-    background: #00ff0022;
-    box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff0044 inset;
-  }
+        .scroll-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-color: #0d1117;
+            scroll-snap-align: start;
+            scroll-margin-top: 3.5rem;
+            padding: 2rem 1rem;
+            min-height: 100vh; /* Ensure sections take full viewport height */
+        }
 
-  /* Responsive tweaks for mobile/iPhone */
-  @media (max-width: 480px) {
-    .form-container {
-      padding: 20px 15px;
+        /* Tech background particles fixed for scrollable content */
+        .scroll-section::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, #ffffff10 1px, transparent 1px);
+            background-size: 20px 20px;
+            animation: moveBg 20s linear infinite;
+            z-index: -2;
+        }
+
+        @keyframes moveBg {
+            0% { background-position: 0 0; }
+            100% { background-position: 200px 200px; }
+        }
+
+        /* Simple button styling without glow or borders */
+        .simple-button, .social-button {
+            width: 100%;
+            padding: 14px;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.875rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-align: center;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .simple-button:hover, .social-button:hover {
+            background-color: #2a2a2a;
+            transform: scale(1.02);
+        }
+
+        .simple-button:disabled {
+            background-color: #4a4a4a;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Custom message box */
+        .message-box-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .message-box-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .message-box {
+            background-color: #0d1117;
+            border-radius: 8px;
+            padding: 24px;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+        }
+
+        .message-box p {
+            font-family: 'Cormorant Garamond', serif;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+        
+        .message-box button {
+            background-color: #ffffff;
+            color: #0d1117;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.2s, color 0.2s;
+            cursor: pointer;
+        }
+
+        .message-box button:hover {
+            background-color: #cccccc;
+        }
+        
+        /* Modal specific styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            overflow-y: auto;
+            padding: 20px 0;
+        }
+
+        .modal-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: #0d1117;
+            border-radius: 8px;
+            padding: 2rem;
+            max-width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            width: 500px;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.visible .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2rem;
+            color: #ffffff;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        /* Lock background scroll when modal is open */
+        .modal-open {
+            overflow: hidden;
+        }
+
+        /* Keyframes for the animation */
+        @keyframes growAndStop {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+
+        .title-animate {
+            animation: growAndStop 1.5s ease-in-out forwards;
+        }
+    </style>
+
+    <!-- Structured Data for Search Engines -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "name": "INSTITUTE4WEALTH",
+          "url": "https://institute4wealth.github.io/",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://yourwebsite.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "Organization",
+          "name": "INSTITUTE4WEALTH",
+          "url": "https://institute4wealth.github.io/"
+        },
+        {
+          "@type": "Service",
+          "name": "Financial Planning and Wealth Building",
+          "description": "Comprehensive financial services including IUL strategies, retirement and estate planning, and tax-free wealth building.",
+          "provider": {
+            "@type": "Person",
+            "name": "Katherine"
+          }
+        },
+        {
+          "@type": "ContactPage",
+          "name": "Quick Quote Form",
+          "description": "A form to get a quick insurance quote based on personal details.",
+          "url": "https://institute4wealth.github.io/QUICKQUOTE/"
+        },
+        {
+          "@type": "JobPosting",
+          "title": "Insurance Agent",
+          "description": "Application for a hard-working and ambitious Insurance Agent. No prior experience required.",
+          "hiringOrganization": {
+            "@type": "Organization",
+            "@type": "Organization",
+            "name": "INSTITUTE4WEALTH"
+          },
+          "jobLocation": {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "US"
+            }
+          },
+          "employmentType": ["FULL_TIME", "PART_TIME"]
+        }
+      ]
     }
-    h1 {
-      font-size: 20px;
-      -webkit-text-stroke: 0.5px #00ff00; /* thinner stroke */
-      animation: none; /* remove pulsing glow */
-      text-shadow: none; /* remove extra shadow */
-    }
-  }
-</style>
+    </script>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-800">
 
-<div class="form-container">
-  <h1>INSTITUTE4WEALTH</h1>
-  <form id="insurance-form" action="https://formspree.io/f/xgvnwjby" method="POST">
-    <label for="first_name">First Name</label>
-    <input type="text" id="first_name" name="first_name" placeholder="John" required>
+    <div class="scroll-container">
 
-    <label for="age">Age</label>
-    <input type="number" id="age" name="age" min="18" max="100" placeholder="30" required>
+        <!-- Section 1: Attention -->
+        <section id="attention" class="scroll-section bg-black flex flex-col justify-center items-center text-center p-0">
+            <div class="bg-black px-8 py-8 sm:px-16 sm:py-16 rounded-xl shadow-lg max-w-sm sm:max-w-xl flex flex-col items-center justify-center">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase font-bold text-red-500 mb-2 js-animate-title">INSTITUTE4WEALTH</h1>
+                <p class="text-lg sm:text-xl md:text-2xl leading-relaxed max-w-xs sm:max-w-sm mx-auto text-white">Your one-stop destination for financial empowerment, wealth building, and the powerful preservation of your legacy.</p>
+            </div>
+        </section>
 
-    <label for="gender">Gender at Birth</label>
-    <select id="gender" name="gender" required>
-      <option value="">-- Select --</option>
-      <option value="Male">Male</option>
-      <option value="Female">Female</option>
-    </select>
+        <!-- Section 2: Interest & Desire -->
+        <section id="interest" class="scroll-section bg-black flex-col justify-center items-center text-center">
+             <div class="max-w-4xl mx-auto flex flex-col items-center p-2">
+                <!-- IUL Website Content Section, with luxury branding -->
+                <div class="mt-4 w-full text-center">
+                    <!-- Hero Headline + Subheadline -->
+                    <h2 class="text-5xl uppercase font-bold text-green-500 mb-2 js-animate-title">Your Legacy, Elevated</h2>
+                    <p class="text-xl leading-relaxed text-center text-white mb-4">
+                        Crafting a masterpiece of financial security and timeless elegance.
+                    </p>
 
-    <label for="smoker">Do you smoke?</label>
-    <select id="smoker" name="smoker" required>
-      <option value="">-- Select --</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
-    </select>
+                    <!-- Emotional Hook / Lifestyle Imagery -->
+                    <p class="text-xl leading-relaxed italic text-center text-white mb-4 max-w-lg mx-auto">
+                        This is not simply a financial product; it is a declaration of your most profound intentions. We believe true wealth is an art form, a legacy sculpted with precision and foresight. Your financial future is not left to chance—it is curated, refined, and protected like a priceless work of art, ensuring your vision endures for generations.
+                    </p>
+                    
+                    <!-- Benefits (Luxury Framing) -->
+                    <div class="flex flex-col gap-4 mt-8 w-full max-w-lg mx-auto">
+                        <div class="bg-[#1a1a1a] p-4 rounded-lg text-left">
+                            <h3 class="text-2xl uppercase font-bold text-green-500 mb-1">The Private Vault</h3>
+                            <p class="text-lg italic text-white">Your wealth, curated and preserved, away from the public gaze.</p>
+                        </div>
+                        <div class="bg-[#1a1a1a] p-4 rounded-lg text-left">
+                            <h3 class="text-2xl uppercase font-bold text-green-500 mb-1">Couture Design</h3>
+                            <p class="text-lg italic text-white">A strategy tailored to move with the dynamism of your lifestyle, not restrict it.</p>
+                        </div>
+                        <div class="bg-[#1a1a1a] p-4 rounded-lg text-left">
+                            <h3 class="text-2xl uppercase font-bold text-green-500 mb-1">The Timeless Trust</h3>
+                            <p class="text-lg italic text-white">A promise of prosperity that endures beyond time, securing the future you envision for those you cherish.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Exclusivity Statement -->
+                    <p class="text-xl leading-relaxed text-center text-white mt-8 max-w-lg mx-auto">
+                        This is an invitation, not an open offer. The <b>Indexed Universal Life</b> is a masterpiece crafted for those who define their own market, for the visionaries who demand security and legacy. Not every plan is designed for greatness. This one is.
+                    </p>
+                </div>
+             </div>
+        </section>
 
-    <label for="coverage">Coverage Requested</label>
-    <select id="coverage" name="coverage" required>
-      <option value="">-- Select --</option>
-      <option value="$100,000">$100,000</option>
-      <option value="$250,000">$250,000</option>
-      <option value="$500,000">$500,000</option>
-      <option value="$1,000,000">$1,000,000</option>
-    </select>
+        <!-- Section 3: Our Services -->
+        <section id="services" class="scroll-section bg-black flex-col justify-center items-center text-center">
+            <div class="max-w-md mx-auto flex flex-col items-center p-2">
+                <h2 class="text-5xl uppercase font-bold text-green-500 mb-2 js-animate-title">Our Services</h2>
+                <p class="text-xl leading-relaxed text-center text-white mt-4">
+                    The Institute 4 Wealth, led by Katherine, specializes in building tax-free wealth through sophisticated financial strategies. We offer personalized solutions nationwide, focusing on:
+                </p>
+                <div class="flex flex-col justify-center items-stretch gap-2 mt-4 w-full">
+                    <div class="p-4 bg-[#1a1a1a] rounded-lg">
+                        <p class="text-xl text-white">Indexed Universal Life (IUL) Strategies</p>
+                    </div>
+                    <div class="p-4 bg-[#1a1a1a] rounded-lg">
+                        <p class="text-xl text-white">Retirement Planning</p>
+                    </div>
+                    <div class="p-4 bg-[#1a1a1a] rounded-lg">
+                        <p class="text-xl text-white">Wealth Preservation</p>
+                    </div>
+                    <div class="p-4 bg-[#1a1a1a] rounded-lg">
+                        <p class="text-xl text-white">Estate Planning Integration</p>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
 
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+        <!-- Section 4: Call to Action -->
+        <section id="call-to-action" class="scroll-section bg-black">
+            <div class="max-w-md mx-auto text-center flex flex-col items-center p-2">
+                <h2 class="text-5xl uppercase font-bold text-green-500 mb-2 js-animate-title">Call to Action</h2>
+                <p class="text-xl leading-relaxed text-center text-white mt-4">
+                    Take the next step towards securing your financial future.
+                </p>
+                <!-- Vertically stacked buttons, primary CTAs first -->
+                <div class="flex flex-col justify-center items-center gap-2 w-full px-2 mb-2 mt-8">
+                    <button class="simple-button" onclick="openModal('quote-modal')">Get Quote</button>
+                    <button class="simple-button" onclick="openModal('application-modal')">Join Our Team</button>
+                    <a href="https://calendly.com/queenofwealth/30min?month=2025-09" target="_blank" rel="noopener noreferrer" class="social-button">Free Consultation</a>
+                    <a href="https://www.youtube.com/@katherine.williams3292" target="_blank" rel="noopener noreferrer" class="social-button">YOUTUBE I4W</a>
+                    <a href="https://www.facebook.com/katherine.financialchampion/" target="_blank" rel="noopener noreferrer" class="social-button">FACEBOOK QHW</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer Section with Video -->
+        <footer class="scroll-section bg-black relative flex flex-col justify-center items-center">
+            <video class="w-full md:max-w-3xl lg:max-w-4xl h-auto rounded-xl shadow-lg mb-8" src="vidone.mp4" playsinline autoplay muted></video>
+            <div class="relative z-10 text-center">
+                <p class="text-5xl md:text-6xl text-green-500 font-bold uppercase js-animate-title">KATHERINE</p>
+                <p class="text-3xl md:text-4xl text-green-500 font-bold uppercase js-animate-title">QUEEN OF HEALTH & WEALTH</p>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Modals Section -->
+    <!-- Quote Modal -->
+    <div id="quote-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('quote-modal')">&times;</span>
+            <h2 class="text-5xl uppercase font-bold text-green-500 text-center">Quick Quote</h2>
+            <p class="text-xl text-center text-white mb-4 w-full">Fill out the form below to get a quick insurance quote.</p>
+            <form id="insurance-form" action="https://formspree.io/f/xknlggaz" method="POST">
+                <label class="text-xl text-white block mb-2" for="first_name">First Name</label>
+                <input class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" type="text" id="first_name" name="first_name" placeholder="John" required>
+            
+                <label class="text-xl text-white block mb-2" for="age">Age</label>
+                <input class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" type="number" id="age" name="age" min="18" max="100" placeholder="30" required>
+            
+                <label class="text-xl text-white block mb-2" for="gender">Gender at Birth</label>
+                <select class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" id="gender" name="gender" required>
+                    <option value="">-- Select --</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            
+                <label class="text-xl text-white block mb-2" for="smoker">Do you smoke?</label>
+                <select class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" id="smoker" name="smoker" required>
+                    <option value="">-- Select --</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            
+                <label class="text-xl text-white block mb-2" for="coverage">Coverage Requested</label>
+                <select class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" id="coverage" name="coverage" required>
+                    <option value="">-- Select --</option>
+                    <option value="$100,000">$100,000</option>
+                    <option value="$250,000">$250,000</option>
+                    <option value="$500,000">$500,000</option>
+                    <option value="$1,000,000">$1,000,000</option>
+                </select>
+            
+                <label class="text-xl text-white block mb-2" for="email">Email</label>
+                <input class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" type="email" id="email" name="email" placeholder="your@email.com" required>
+            
+                <label class="text-xl text-white block mb-2" for="phone">Phone</label>
+                <input class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" type="tel" id="phone" name="phone" placeholder="(123)456-7890" required>
+            
+                <button class="simple-button" type="submit">Get Quote</button>
+            </form>
+        </div>
+    </div>
 
-    <label for="phone">Phone</label>
-    <input type="tel" id="phone" name="phone" placeholder="(123)456-7890" required>
+    <!-- Application Modal -->
+    <div id="application-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('application-modal')">&times;</span>
+            <h2 class="text-5xl uppercase font-bold text-green-500 text-center">Join Our Team</h2>
+            <p class="text-xl text-center text-white mb-4 w-full">We're looking for hardworking individuals to join our team. No experience necessary!</p>
+            <form id="application-form" action="https://formspree.io/f/xoqogqbz" method="POST">
+                <label class="text-xl text-white block mb-2" for="app_name">Full Name</label>
+                <input class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" type="text" id="app_name" name="name" placeholder="Full Name" required>
+        
+                <label class="text-xl text-white block mb-2" for="app_email">Email</label>
+                <input class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" type="email" id="app_email" name="email" placeholder="your@email.com" required>
+        
+                <label class="text-xl text-white block mb-2" for="app_phone">Phone</label>
+                <input class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" type="tel" id="app_phone" name="phone" placeholder="(123)456-7890" required>
 
-    <button type="submit">Get Quote</button>
-  </form>
-</div>
+                <label class="text-xl text-white block mb-2" for="licensed">Are you a licensed agent?</label>
+                <select class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" id="licensed" name="licensed" required>
+                    <option value="">-- Select --</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
 
-<script>
-const form = document.getElementById('insurance-form');
-const phoneInput = document.getElementById('phone');
+                <label class="text-xl text-white block mb-2" for="willing_license">If not, are you willing to get licensed?</label>
+                <select class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" id="willing_license" name="willing_license" required>
+                    <option value="">-- Select --</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
 
-// Auto-format phone as (123)456-7890
-phoneInput.addEventListener('input', e => {
-  let x = e.target.value.replace(/\D/g,'').substring(0,10); 
-  let formatted = '';
-  if(x.length > 0) formatted = '(' + x.substring(0,3);
-  if(x.length >= 4) formatted += ')' + x.substring(3,6);
-  if(x.length >= 7) formatted += '-' + x.substring(6,10);
-  e.target.value = formatted;
-});
+                <label class="text-xl text-white block mb-2" for="experience">Do you have prior experience?</label>
+                <select class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" id="experience" name="experience" required>
+                    <option value="">-- Select --</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
 
-// Form submission with redirect
-form.addEventListener('submit', async function(e) {
-  e.preventDefault();
+                <label class="text-xl text-white block mb-2" for="felony">Have you ever been convicted of a felony?</label>
+                <select class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" id="felony" name="felony" required>
+                    <option value="">-- Select --</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
 
-  if(!phoneInput.value.match(/\(\d{3}\)\d{3}-\d{4}/)) {
-    alert('Please enter a valid phone number in the format (123)456-7890.');
-    return;
-  }
+                <label class="text-xl text-white block mb-2" for="about_you">Tell us about yourself and why you'd be a great fit for our team.</label>
+                <textarea class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" id="about_you" name="about_you" rows="5" placeholder="I am..."></textarea>
+        
+                <button class="simple-button" type="submit">Submit Application</button>
+            </form>
+        </div>
+    </div>
 
+    <!-- Custom message box overlay -->
+    <div id="message-box-overlay" class="message-box-overlay">
+        <div class="message-box">
+            <p id="message-text" class="text-white"></p>
+            <button id="message-ok-btn">OK</button>
+        </div>
+    </div>
+    
+    <script>
+        const messageBoxOverlay = document.getElementById('message-box-overlay');
+        const messageText = document.getElementById('message-text');
+        const messageOkBtn = document.getElementById('message-ok-btn');
+
+        const showMessage = (message) => {
+            messageText.innerText = message;
+            messageBoxOverlay.classList.add('visible');
+        };
+
+        messageOkBtn.addEventListener('click', () => {
+            messageBoxOverlay.classList.remove('visible');
+        });
+
+        const openModal = (modalId) => {
+            document.getElementById(modalId).classList.add('visible');
+            document.body.classList.add('modal-open');
+        };
+
+        const closeModal = (modalId) => {
+            document.getElementById(modalId).classList.remove('visible');
+            document.body.classList.remove('modal-open');
+        };
+
+        // Close modal if user clicks outside of the content
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target.classList.contains('modal-overlay')) {
+                    closeModal(e.target.id);
+                }
+            });
+        });
+
+        // Phone number formatting
+        const handlePhoneInput = (e) => {
+            let x = e.target.value.replace(/\D/g,'').substring(0,10);
+            let formatted = '';
+            if(x.length > 0) formatted = '(' + x.substring(0,3);
+            if(x.length >= 4) formatted += ') ' + x.substring(3,6);
+            if(x.length >= 7) formatted += '-' + x.substring(6,10);
+            e.target.value = formatted;
+        };
+
+        document.getElementById('phone').addEventListener('input', handlePhoneInput);
+        document.getElementById('app_phone').addEventListener('input', handlePhoneInput);
+        
+        // Form submission with Firestore and Formspree
+        const handleFormSubmission = async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+
+            // Disable button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            const phoneInput = form.querySelector('input[type="tel"]');
+            
+            if(!phoneInput.value.match(/\(\d{3}\) \d{3}-\d{4}/)) {
+                showMessage('Please enter a valid phone number in the format (123) 456-7890.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = form.id === 'insurance-form' ? 'Get Quote' : 'Submit Application';
+                return;
+            }
+
+            const formData = new FormData(form);
+            const formDataObject = Object.fromEntries(formData.entries());
+            const collectionPath = form.id === 'insurance-form' ? 
+                                   `/artifacts/${__app_id}/public/data/quotes` : 
+                                   `/artifacts/${__app_id}/public/data/applications`;
+            
+            try {
+                // 1. Submit to Formspree
+                const formspreeResponse = await fetch(form.action, {
+                    method: form.method,
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                // 2. Save to Firestore
+                const docRef = await addDoc(collection(window.db, collectionPath), formDataObject);
+
+                if (formspreeResponse.ok) {
+                    showMessage('Form submitted successfully!');
+                    console.log("Document successfully written with ID: ", docRef.id);
+                    form.reset();
+                    closeModal(form.closest('.modal-overlay').id);
+                } else {
+                    showMessage('Form submission failed. Please try again.');
+                    const errorData = await formspreeResponse.json();
+                    console.error("Formspree error:", errorData);
+                }
+            } catch (error) {
+                showMessage('An error occurred. Please try again later.');
+                console.error("Firestore submission failed:", error);
+            } finally {
+                // Re-enable button
+                submitBtn.disabled = false;
+                submitBtn.textContent = form.id === 'insurance-form' ? 'Get Quote' : 'Submit Application';
+            }
+        };
+
+        document.getElementById('insurance-form').addEventListener('submit', handleFormSubmission);
+        document.getElementById('application-form').addEventListener('submit', handleFormSubmission);
+        
+        // JavaScript for the scroll-triggered animation
+        const animateTitles = () => {
+            const titles = document.querySelectorAll('.js-animate-title');
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('title-animate');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 }); // Trigger when 50% of the element is in view
+
+            titles.forEach(title => {
+                observer.observe(title);
+            });
+        };
+
+        window.addEventListener('load', animateTitles);
+    </script>
+</body>
+</html>
