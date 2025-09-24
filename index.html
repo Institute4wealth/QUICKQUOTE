@@ -17,44 +17,6 @@
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Firebase SDKs -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        setLogLevel('debug');
-
-        // Check for global variables and assign them to local variables
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : '';
-        
-        window.app;
-        window.db;
-        window.auth;
-
-        const initFirebase = async () => {
-            try {
-                window.app = initializeApp(firebaseConfig);
-                window.db = getFirestore(window.app);
-                window.auth = getAuth(window.app);
-
-                if (initialAuthToken) {
-                    await signInWithCustomToken(window.auth, initialAuthToken);
-                    console.log("Signed in with custom token.");
-                } else {
-                    await signInAnonymously(window.auth);
-                    console.log("Signed in anonymously.");
-                }
-
-            } catch (error) {
-                console.error("Firebase initialization failed:", error);
-            }
-        };
-
-        window.addEventListener('load', initFirebase);
-    </script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;700&display=swap');
@@ -400,8 +362,9 @@
                     <button class="simple-button" onclick="openModal('quote-modal')">Get Quote</button>
                     <button class="simple-button" onclick="openModal('application-modal')">Join Our Team</button>
                     <a href="https://calendly.com/queenofwealth/30min?month=2025-09" target="_blank" rel="noopener noreferrer" class="social-button">Free Consultation</a>
-                    <a href="https://www.youtube.com/@queenofhealthandwealth" target="_blank" rel="noopener noreferrer" class="social-button">YOUTUBE I4W</a>
-                    <a href="https://www.facebook.com/profile.php?id=61580010932668&sk=grid" target="_blank" rel="noopener noreferrer" class="social-button">FACEBOOK QHW</a>
+                    <a href="https://www.youtube.com/@katherine.williams3292" target="_blank" rel="noopener noreferrer" class="social-button">YOUTUBE I4W</a>
+                    <a href="https://www.facebook.com/katherine.financialchampion/" target="_blank" rel="noopener noreferrer" class="social-button">FACEBOOK QHW</a>
+                    <a href="https://www.tiktok.com/@queen.of.health.wealth?_t=ZP-8zz7fQkdQIp&_r=1" target="_blank" rel="noopener noreferrer" class="social-button">TIKTOK QHW</a>
                 </div>
             </div>
         </section>
@@ -423,7 +386,7 @@
             <span class="modal-close" onclick="closeModal('quote-modal')">&times;</span>
             <h2 class="text-5xl uppercase font-bold text-green-500 text-center">Quick Quote</h2>
             <p class="text-xl text-center text-white mb-4 w-full">Fill out the form below to get a quick insurance quote.</p>
-            <form id="insurance-form" action="https://formspree.io/f/xknlggaz" method="POST">
+            <form id="insurance-form">
                 <label class="text-xl text-white block mb-2" for="first_name">First Name</label>
                 <input class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" type="text" id="first_name" name="first_name" placeholder="John" required>
             
@@ -446,7 +409,6 @@
             
                 <label class="text-xl text-white block mb-2" for="coverage">Coverage Requested</label>
                 <select class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" id="coverage" name="coverage" required>
-                    <option value="">-- Select --</option>
                     <option value="$100,000">$100,000</option>
                     <option value="$250,000">$250,000</option>
                     <option value="$500,000">$500,000</option>
@@ -470,7 +432,7 @@
             <span class="modal-close" onclick="closeModal('application-modal')">&times;</span>
             <h2 class="text-5xl uppercase font-bold text-green-500 text-center">Join Our Team</h2>
             <p class="text-xl text-center text-white mb-4 w-full">We're looking for hardworking individuals to join our team. No experience necessary!</p>
-            <form id="application-form" action="https://formspree.io/f/xoqogqbz" method="POST">
+            <form id="application-form">
                 <label class="text-xl text-white block mb-2" for="app_name">Full Name</label>
                 <input class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" type="text" id="app_name" name="name" placeholder="Full Name" required>
         
@@ -570,62 +532,37 @@
         document.getElementById('phone').addEventListener('input', handlePhoneInput);
         document.getElementById('app_phone').addEventListener('input', handlePhoneInput);
         
-        // Form submission with Firestore and Formspree
-        const handleFormSubmission = async (e) => {
+        // Form submission with mailto link
+        const handleFormSubmission = (e) => {
             e.preventDefault();
             const form = e.target;
-            const submitBtn = form.querySelector('button[type="submit"]');
-
-            // Disable button and show loading state
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Submitting...';
-
             const phoneInput = form.querySelector('input[type="tel"]');
             
             if(!phoneInput.value.match(/\(\d{3}\) \d{3}-\d{4}/)) {
                 showMessage('Please enter a valid phone number in the format (123) 456-7890.');
-                submitBtn.disabled = false;
-                submitBtn.textContent = form.id === 'insurance-form' ? 'Get Quote' : 'Submit Application';
                 return;
             }
 
             const formData = new FormData(form);
             const formDataObject = Object.fromEntries(formData.entries());
-            const collectionPath = form.id === 'insurance-form' ? 
-                                   `/artifacts/${__app_id}/public/data/quotes` : 
-                                   `/artifacts/${__app_id}/public/data/applications`;
             
-            try {
-                // 1. Submit to Formspree
-                const formspreeResponse = await fetch(form.action, {
-                    method: form.method,
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
-                // 2. Save to Firestore
-                const docRef = await addDoc(collection(window.db, collectionPath), formDataObject);
-
-                if (formspreeResponse.ok) {
-                    showMessage('Form submitted successfully!');
-                    console.log("Document successfully written with ID: ", docRef.id);
-                    form.reset();
-                    closeModal(form.closest('.modal-overlay').id);
-                } else {
-                    showMessage('Form submission failed. Please try again.');
-                    const errorData = await formspreeResponse.json();
-                    console.error("Formspree error:", errorData);
-                }
-            } catch (error) {
-                showMessage('An error occurred. Please try again later.');
-                console.error("Firestore submission failed:", error);
-            } finally {
-                // Re-enable button
-                submitBtn.disabled = false;
-                submitBtn.textContent = form.id === 'insurance-form' ? 'Get Quote' : 'Submit Application';
+            // Build the email body from the form data
+            let emailBody = '';
+            for (const [key, value] of Object.entries(formDataObject)) {
+                emailBody += `${key}: ${value}\n`;
             }
+
+            let subject = form.id === 'insurance-form' ? 'New Quick Quote Request' : 'New Job Application';
+            let mailtoLink = `mailto:i4wk8z@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            window.location.href = mailtoLink;
+
+            // Show a message after a brief delay to allow the mail client to open
+            setTimeout(() => {
+                showMessage('The form has been prepared in your email client. Please review and send!');
+                form.reset();
+                closeModal(form.closest('.modal-overlay').id);
+            }, 500);
         };
 
         document.getElementById('insurance-form').addEventListener('submit', handleFormSubmission);
@@ -653,5 +590,3 @@
     </script>
 </body>
 </html>
-
-
