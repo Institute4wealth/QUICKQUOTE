@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A single-page, SEO-optimized website for INSTITUTE4WEALTH, led by financial expert Katherine. This site provides information on job opportunities, financial planning, quick insurance quotes, and strategies for building tax-free wealth.">
-    <meta name="keywords" content="Insurance Agent, application, INSTITUTE4WEALTH, job application, financial services, career, Quick Quote, insurance quote, life insurance, Katherine, Born to Win Planner, Queen of Health and Wealth, IUL, financial literacy, infinite banking, asset protection, financial champion, tax-free wealth, retirement planning, estate planning">
+    <title>INSTITUTE4WEALTH | IUL, Tax-Free Wealth & Financial Agent Jobs</title>
 
-    <!-- Open Graph Protocol for social media sharing -->
+    <meta name="description" content="INSTITUTE4WEALTH offers expert financial planning, tax-free wealth building, and secure Indexed Universal Life (IUL) strategies. Apply to become a licensed financial agent or get a quick life insurance quote today!">
+    
+    <meta name="keywords" content="IUL, Indexed Universal Life, tax-free wealth, retirement planning, financial agent jobs, life insurance quote, infinite banking, asset protection, financial services, financial literacy, Katie">
+
     <meta property="og:title" content="INSTITUTE4WEALTH & The Queen of Health and Wealth">
-    <meta property="og:description" content="A schema-based, SEO-refined website including an application form, a quick quote calculator, and details about Katherine's financial planning services, including IULs and tax-free wealth strategies.">
+    <meta property="og:description" content="A schema-based, SEO-refined website including an application form, a quick quote calculator, and details about Katie's financial planning services, including IULs and tax-free wealth strategies.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:url" content="https://institute4wealth.com">
     <meta property="og:image" content="https://placehold.co/1200x630/000000/FFFFFF?text=INSTITUTE4WEALTH">
 
-    <title>INSTITUTE4WEALTH</title>
-
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;700&display=swap');
-
         body {
             font-family: 'Cormorant Garamond', serif;
             -webkit-font-smoothing: antialiased;
@@ -30,7 +28,6 @@
             cursor: default;
             color: #ffffff;
         }
-
         /* New class for the golden metallic text effect */
         .text-golden-metallic {
             background: linear-gradient(180deg, #f0e68c, #c0a058, #f0e68c);
@@ -38,13 +35,12 @@
             -webkit-text-fill-color: transparent;
             text-shadow: 2px 2px 5px rgba(255, 215, 0, 0.4);
         }
-
+        /* --- Performance Improvement: Changed height to min-h-screen for better mobile support (svh) --- */
         .scroll-container {
-            height: 100vh;
+            min-height: 100vh;
             overflow-y: scroll;
             -webkit-overflow-scrolling: touch;
         }
-
         .scroll-section {
             display: flex;
             align-items: center;
@@ -54,9 +50,9 @@
             scroll-snap-align: start;
             scroll-margin-top: 3.5rem;
             padding: 2rem 1rem;
-            min-height: 100vh; /* Ensure sections take full viewport height */
+            min-height: 100vh; 
+            min-height: 100svh; /* Modern mobile viewport unit */
         }
-
         /* Tech background particles fixed for scrollable content */
         .scroll-section::before {
             content: '';
@@ -67,13 +63,11 @@
             animation: moveBg 20s linear infinite;
             z-index: -2;
         }
-
         @keyframes moveBg {
             0% { background-position: 0 0; }
             100% { background-position: 200px 200px; }
         }
-
-        /* Simple button styling without glow or borders */
+        /* Simple button styling */
         .simple-button, .social-button {
             width: 100%;
             padding: 14px;
@@ -93,18 +87,16 @@
             justify-content: center;
             align-items: center;
         }
-
         .simple-button:hover, .social-button:hover {
             background-color: #2a2a2a;
             transform: scale(1.02);
         }
-
         .simple-button:disabled {
             background-color: #4a4a4a;
             cursor: not-allowed;
             transform: none;
         }
-        
+
         /* Custom message box */
         .message-box-overlay {
             position: fixed;
@@ -118,12 +110,10 @@
             visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
-
         .message-box-overlay.visible {
             opacity: 1;
             visibility: visible;
         }
-
         .message-box {
             background-color: #0d1117;
             border-radius: 8px;
@@ -132,13 +122,11 @@
             text-align: center;
             position: relative;
         }
-
         .message-box p {
             font-family: 'Cormorant Garamond', serif;
             color: #ffffff;
             margin-bottom: 16px;
         }
-        
         .message-box button {
             background-color: #ffffff;
             color: #0d1117;
@@ -148,11 +136,10 @@
             transition: background-color 0.2s, color 0.2s;
             cursor: pointer;
         }
-
         .message-box button:hover {
             background-color: #cccccc;
         }
-        
+
         /* Modal specific styles */
         .modal-overlay {
             position: fixed;
@@ -171,12 +158,10 @@
             overflow-y: auto;
             padding: 20px 0;
         }
-
         .modal-overlay.visible {
             opacity: 1;
             visibility: visible;
         }
-
         .modal-content {
             background-color: #0d1117;
             border-radius: 8px;
@@ -189,11 +174,9 @@
             transform: scale(0.95);
             transition: transform 0.3s ease;
         }
-
         .modal-overlay.visible .modal-content {
             transform: scale(1);
         }
-
         .modal-close {
             position: absolute;
             top: 10px;
@@ -203,12 +186,10 @@
             cursor: pointer;
             line-height: 1;
         }
-
         /* Lock background scroll when modal is open */
         .modal-open {
             overflow: hidden;
         }
-
         /* Keyframes for the animation */
         @keyframes growAndStop {
             0% {
@@ -218,13 +199,11 @@
                 transform: scale(1.1);
             }
         }
-
         .title-animate {
             animation: growAndStop 1.5s ease-in-out forwards;
         }
     </style>
 
-    <!-- Structured Data for Search Engines -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -232,36 +211,36 @@
         {
           "@type": "WebSite",
           "name": "INSTITUTE4WEALTH",
-          "url": "https://institute4wealth.github.io/",
+          "url": "https://institute4wealth.com/",
           "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://yourwebsite.com/search?q={search_term_string}",
+            "target": "https://institute4wealth.com/search?q={search_term_string}",
             "query-input": "required name=search_term_string"
           }
         },
         {
           "@type": "Organization",
           "name": "INSTITUTE4WEALTH",
-          "url": "https://institute4wealth.github.io/"
+          "url": "https://institute4wealth.com/"
         },
         {
           "@type": "Service",
-          "name": "Financial Planning and Wealth Building",
+          "name": "Indexed Universal Life and Tax-Free Wealth Building",
           "description": "Comprehensive financial services including IUL strategies, retirement and estate planning, and tax-free wealth building.",
           "provider": {
             "@type": "Person",
-            "name": "Katherine"
+            "name": "Katie"
           }
         },
         {
           "@type": "ContactPage",
-          "name": "Quick Quote Form",
+          "name": "Quick Quote Form for Life Insurance",
           "description": "A form to get a quick insurance quote based on personal details.",
-          "url": "https://institute4wealth.github.io/QUICKQUOTE/"
+          "url": "https://institute4wealth.com/QUICKQUOTE/"
         },
         {
           "@type": "JobPosting",
-          "title": "Insurance Agent",
+          "title": "Licensed Financial Agent Career",
           "description": "Application for a hard-working and ambitious Insurance Agent. No prior experience required.",
           "hiringOrganization": {
             "@type": "Organization",
@@ -284,36 +263,29 @@
 <body class="bg-gray-100 text-gray-800">
 
     <div class="scroll-container">
-
-        <!-- Section 1: Attention -->
         <section id="attention" class="scroll-section bg-black flex flex-col justify-center items-center text-center p-0">
             <div class="bg-black px-8 py-8 sm:px-16 sm:py-16 rounded-xl shadow-lg max-w-sm sm:max-w-xl flex flex-col items-center justify-center">
                 <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase font-bold text-golden-metallic mb-2 js-animate-title">INSTITUTE4WEALTH</h1>
-                <p class="text-lg sm:text-xl md:text-2xl leading-relaxed max-w-xs sm:max-w-sm mx-auto text-white">Your path to financial power. This is your one-stop destination for building wealth, securing your future, and protecting the legacy you want to leave behind.</p>
+                <p class="text-lg sm:text-xl md:text-2xl leading-relaxed max-w-xs sm:max-w-sm mx-auto text-white">Your path to **tax-free** financial power. This is your one-stop destination for building wealth, securing your future, and protecting the legacy you want to leave behind.</p>
             </div>
         </section>
 
-        <!-- Section 2: Interest & Desire -->
         <section id="interest" class="scroll-section bg-black flex-col justify-center items-center text-center">
              <div class="max-w-4xl mx-auto flex flex-col items-center p-2">
-                <!-- IUL Website Content Section, with luxury branding -->
                 <div class="mt-4 w-full text-center">
-                    <!-- Hero Headline + Subheadline -->
-                    <h2 class="text-5xl uppercase font-bold text-golden-metallic mb-2 js-animate-title">Your Legacy, Elevated</h2>
+                    <h2 class="text-5xl uppercase font-bold text-golden-metallic mb-2 js-animate-title">Your Tax-Free Legacy, Elevated</h2>
                     <p class="text-xl leading-relaxed text-center text-white mb-4">
-                        Crafting a masterpiece of financial security and timeless elegance.
+                        Crafting a masterpiece of financial security and timeless elegance through **Indexed Universal Life (IUL)**.
                     </p>
 
-                    <!-- Emotional Hook / Lifestyle Imagery -->
                     <p class="text-xl leading-relaxed italic text-center text-white mb-4 max-w-lg mx-auto">
                         This is not simply a financial product; it is a declaration of your most profound intentions. We believe true wealth is an art form, a legacy sculpted with precision and foresight. Your financial future is not left to chance—it is curated, refined, and protected like a priceless work of art, ensuring your vision endures for generations.
                     </p>
-                    
-                    <!-- Benefits (Luxury Framing) -->
+
                     <div class="flex flex-col gap-4 mt-8 w-full max-w-lg mx-auto">
                         <div class="bg-[#1a1a1a] p-4 rounded-lg text-left">
-                            <h3 class="text-2xl uppercase font-bold text-golden-metallic mb-1">The Private Vault</h3>
-                            <p class="text-lg italic text-white">Your wealth built, curated and preserved, away from the public gaze.</p>
+                            <h3 class="text-2xl uppercase font-bold text-golden-metallic mb-1">The Tax-Free Private Vault</h3>
+                            <p class="text-lg italic text-white">Your wealth built, curated and preserved, away from the public gaze with the power of **IUL**.</p>
                         </div>
                         <div class="bg-[#1a1a1a] p-4 rounded-lg text-left">
                             <h3 class="text-2xl uppercase font-bold text-golden-metallic mb-1">Couture Design</h3>
@@ -324,25 +296,23 @@
                             <p class="text-lg italic text-white">A promise of prosperity that endures beyond time, securing the future you envision for those you cherish.</p>
                         </div>
                     </div>
-                    
-                    <!-- Exclusivity Statement -->
+
                     <p class="text-xl leading-relaxed text-center text-white mt-8 max-w-lg mx-auto">
-                        The path to a powerful legacy. This is an invitation, not an open offer. The Indexed Universal Life is a masterpiece designed for those who command their own future, for the visionaries who demand both security and a lasting legacy. Not every plan is designed for greatness. This one is.
+                        The path to a powerful legacy. This is an invitation, not an open offer. The **Indexed Universal Life** is a masterpiece designed for those who command their own future, for the visionaries who demand both security and a lasting legacy. Not every plan is designed for greatness. This one is.
                     </p>
                 </div>
              </div>
         </section>
 
-        <!-- Section 3: Our Services -->
         <section id="services" class="scroll-section bg-black flex-col justify-center items-center text-center">
             <div class="max-w-md mx-auto flex flex-col items-center p-2">
-                <h2 class="text-5xl uppercase font-bold text-golden-metallic mb-2 js-animate-title">Our Services</h2>
+                <h2 class="text-5xl uppercase font-bold text-golden-metallic mb-2 js-animate-title">Our Financial Services</h2>
                 <p class="text-xl leading-relaxed text-center text-white mt-4">
-                    The Institute 4 Wealth, led by Katherine, specializes in building tax-free wealth through sophisticated financial strategies. We offer personalized solutions nationwide, focusing on:
+                    The Institute 4 Wealth, led by Katie, specializes in building **tax-free wealth** through sophisticated financial strategies. We offer personalized solutions nationwide, focusing on:
                 </p>
                 <div class="flex flex-col justify-center items-stretch gap-2 mt-4 w-full">
                     <div class="p-4 bg-[#1a1a1a] rounded-lg">
-                        <p class="text-xl text-white">Indexed Universal Life (IUL) Strategies</p>
+                        <p class="text-xl text-white">**Indexed Universal Life (IUL)** Strategies</p>
                     </div>
                     <div class="p-4 bg-[#1a1a1a] rounded-lg">
                         <p class="text-xl text-white">Retirement Planning</p>
@@ -354,21 +324,18 @@
                         <p class="text-xl text-white">Estate Planning Integration</p>
                     </div>
                 </div>
-                
             </div>
         </section>
 
-        <!-- Section 4: Call to Action -->
         <section id="call-to-action" class="scroll-section bg-black">
             <div class="max-w-md mx-auto text-center flex flex-col items-center p-2">
-                <h2 class="text-5xl uppercase font-bold text-golden-metallic mb-2 js-animate-title">Call to Action</h2>
+                <h2 class="text-5xl uppercase font-bold text-golden-metallic mb-2 js-animate-title">Get a Quote or Join Our Team</h2>
                 <p class="text-xl leading-relaxed text-center text-white mt-4">
-                    Take the next step towards securing your financial future.
+                    Take the next step towards securing your financial future or starting a career as a **Financial Agent**.
                 </p>
-                <!-- Vertically stacked buttons, primary CTAs first -->
                 <div class="flex flex-col justify-center items-center gap-2 w-full px-2 mb-2 mt-8">
-                    <button class="simple-button" onclick="openModal('quote-modal')">Get Quote</button>
-                    <button class="simple-button" onclick="openModal('application-modal')">Join Our Team</button>
+                    <button class="simple-button" onclick="openModal('quote-modal')">Get Life Insurance Quote</button>
+                    <button class="simple-button" onclick="openModal('application-modal')">Financial Agent Application</button>
                     <a href="https://calendly.com/queenofwealth/30min?month=2025-09" target="_blank" rel="noopener noreferrer" class="social-button">Free Consultation</a>
                     <a href="https://www.youtube.com/@queenofhealthandwealth" target="_blank" rel="noopener noreferrer" class="social-button">YOUTUBE I4W</a>
                     <a href="https://www.facebook.com/profile.php?id=61580010932668&sk=reels_tab" target="_blank" rel="noopener noreferrer" class="social-button">FACEBOOK QHW</a>
@@ -376,45 +343,50 @@
                 </div>
             </div>
         </section>
-        
-        <!-- Footer Section with Video -->
+
         <footer class="scroll-section bg-black relative flex flex-col justify-center items-center">
-            <video class="w-full md:max-w-3xl lg:max-w-4xl h-auto rounded-xl shadow-lg mb-8" src="vidone.mp4" playsinline autoplay muted></video>
+            <video class="w-full md:max-w-3xl lg:max-w-4xl h-auto rounded-xl shadow-lg mb-8" 
+                   src="vidone.mp4" 
+                   playsinline 
+                   autoplay 
+                   muted 
+                   loop 
+                   loading="lazy"
+                   poster="placeholder-video-image.jpg"
+            ></video>
             <div class="relative z-10 text-center">
-                <p class="text-5xl md:text-6xl text-golden-metallic font-bold uppercase js-animate-title">KATHERINE</p>
+                <p class="text-5xl md:text-6xl text-golden-metallic font-bold uppercase js-animate-title">KATIE</p>
                 <p class="text-3xl md:text-4xl text-golden-metallic font-bold uppercase js-animate-title">QUEEN OF HEALTH & WEALTH</p>
             </div>
         </footer>
     </div>
-    
-    <!-- Modals Section -->
-    <!-- Quote Modal -->
+
     <div id="quote-modal" class="modal-overlay">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('quote-modal')">&times;</span>
             <h2 class="text-5xl uppercase font-bold text-golden-metallic text-center">Quick Quote</h2>
             <p class="text-xl text-center text-white mb-4 w-full">Fill out the form below to get a quick insurance quote.</p>
-            <form id="insurance-form">
+            <form id="insurance-form" class="formspree-form" method="POST" action="https://formspree.io/f/xgvnwjby">
                 <label class="text-xl text-white block mb-2" for="first_name">First Name</label>
                 <input class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" type="text" id="first_name" name="first_name" placeholder="John" required>
-            
+
                 <label class="text-xl text-white block mb-2" for="age">Age</label>
                 <input class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" type="number" id="age" name="age" min="18" max="100" placeholder="30" required>
-            
+
                 <label class="text-xl text-white block mb-2" for="gender">Gender at Birth</label>
                 <select class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" id="gender" name="gender" required>
                     <option value="">-- Select --</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                 </select>
-            
+
                 <label class="text-xl text-white block mb-2" for="smoker">Do you smoke?</label>
                 <select class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" id="smoker" name="smoker" required>
                     <option value="">-- Select --</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
-            
+
                 <label class="text-xl text-white block mb-2" for="coverage">Coverage Requested</label>
                 <select class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" id="coverage" name="coverage" required>
                     <option value="$100,000">$100,000</option>
@@ -422,33 +394,28 @@
                     <option value="$500,000">$500,000</option>
                     <option value="$1,000,000">$1,000,000</option>
                 </select>
-            
+
                 <label class="text-xl text-white block mb-2" for="email">Email</label>
-                <input class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" type="email" id="email" name="email" placeholder="your@email.com" required>
-            
-                <label class="text-xl text-white block mb-2" for="phone">Phone</label>
-                <input class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" type="tel" id="phone" name="phone" placeholder="(123)456-7890" required>
-            
+                <input class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" type="email" id="email" name="_replyto" placeholder="your@email.com" required> <label class="text-xl text-white block mb-2" for="phone">Phone</label>
+                <input class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" type="tel" id="phone" name="phone" placeholder="(123)456-7890" pattern="\(\d{3}\) \d{3}-\d{4}" required>
+
                 <button class="simple-button" type="submit">Get Quote</button>
             </form>
         </div>
     </div>
 
-    <!-- Application Modal -->
     <div id="application-modal" class="modal-overlay">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('application-modal')">&times;</span>
-            <h2 class="text-5xl uppercase font-bold text-golden-metallic text-center">Join Our Team</h2>
-            <p class="text-xl text-center text-white mb-4 w-full">We're looking for hardworking individuals to join our team. No experience necessary!</p>
-            <form id="application-form">
+            <h2 class="text-5xl uppercase font-bold text-golden-metallic text-center">Join Our Financial Agent Team</h2>
+            <p class="text-xl text-center text-white mb-4 w-full">We're looking for hardworking individuals to join our team. No experience necessary to start your career as an agent!</p>
+            <form id="application-form" class="formspree-form" method="POST" action="https://formspree.io/f/manpqpaa">
                 <label class="text-xl text-white block mb-2" for="app_name">Full Name</label>
                 <input class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" type="text" id="app_name" name="name" placeholder="Full Name" required>
-        
+
                 <label class="text-xl text-white block mb-2" for="app_email">Email</label>
-                <input class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" type="email" id="app_email" name="email" placeholder="your@email.com" required>
-        
-                <label class="text-xl text-white block mb-2" for="app_phone">Phone</label>
-                <input class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" type="tel" id="app_phone" name="phone" placeholder="(123)456-7890" required>
+                <input class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" type="email" id="app_email" name="_replyto" placeholder="your@email.com" required> <label class="text-xl text-white block mb-2" for="app_phone">Phone</label>
+                <input class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" type="tel" id="app_phone" name="phone" placeholder="(123)456-7890" pattern="\(\d{3}\) \d{3}-\d{4}" required>
 
                 <label class="text-xl text-white block mb-2" for="licensed">Are you a licensed agent?</label>
                 <select class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" id="licensed" name="licensed" required>
@@ -480,33 +447,46 @@
 
                 <label class="text-xl text-white block mb-2" for="about_you">Tell us about yourself and why you'd be a great fit for our team.</label>
                 <textarea class="w-full p-3 mb-4 bg-gray-800 text-white rounded-lg" id="about_you" name="about_you" rows="5" placeholder="I am..."></textarea>
-        
+
                 <button class="simple-button" type="submit">Submit Application</button>
             </form>
         </div>
     </div>
 
-    <!-- Custom message box overlay -->
     <div id="message-box-overlay" class="message-box-overlay">
         <div class="message-box">
             <p id="message-text" class="text-white"></p>
             <button id="message-ok-btn">OK</button>
         </div>
     </div>
-    
-    <script>
-        const messageBoxOverlay = document.getElementById('message-box-overlay');
-        const messageText = document.getElementById('message-text');
-        const messageOkBtn = document.getElementById('message-ok-btn');
 
-        const showMessage = (message) => {
-            messageText.innerText = message;
-            messageBoxOverlay.classList.add('visible');
+    <script>
+        // --- Formspree AJAX Submission Logic ---
+        const forms = document.querySelectorAll('.formspree-form');
+
+        // Phone number formatting
+        const handlePhoneInput = (e) => {
+            let x = e.target.value.replace(/\D/g,'').substring(0,10);
+            let formatted = '';
+            if(x.length > 0) formatted = '(' + x.substring(0,3);
+            if(x.length >= 4) formatted += ') ' + x.substring(3,6);
+            if(x.length >= 7) formatted += '-' + x.substring(6,10);
+            e.target.value = formatted;
         };
 
-        messageOkBtn.addEventListener('click', () => {
-            messageBoxOverlay.classList.remove('visible');
-        });
+        // Attach listeners to both phone fields
+        document.getElementById('phone')?.addEventListener('input', handlePhoneInput);
+        document.getElementById('app_phone')?.addEventListener('input', handlePhoneInput);
+
+        const showMessage = (message) => {
+            const messageBoxOverlay = document.getElementById('message-box-overlay');
+            const messageText = document.getElementById('message-text');
+            messageText.innerText = message;
+            messageBoxOverlay.classList.add('visible');
+            document.getElementById('message-ok-btn').addEventListener('click', () => {
+                messageBoxOverlay.classList.remove('visible');
+            }, { once: true }); // Only listen once
+        };
 
         const openModal = (modalId) => {
             document.getElementById(modalId).classList.add('visible');
@@ -527,55 +507,58 @@
             });
         });
 
-        // Phone number formatting
-        const handlePhoneInput = (e) => {
-            let x = e.target.value.replace(/\D/g,'').substring(0,10);
-            let formatted = '';
-            if(x.length > 0) formatted = '(' + x.substring(0,3);
-            if(x.length >= 4) formatted += ') ' + x.substring(3,6);
-            if(x.length >= 7) formatted += '-' + x.substring(6,10);
-            e.target.value = formatted;
-        };
 
-        document.getElementById('phone').addEventListener('input', handlePhoneInput);
-        document.getElementById('app_phone').addEventListener('input', handlePhoneInput);
-        
-        // Form submission with mailto link
-        const handleFormSubmission = (e) => {
-            e.preventDefault();
-            const form = e.target;
-            const phoneInput = form.querySelector('input[type="tel"]');
-            
-            if(!phoneInput.value.match(/\(\d{3}\) \d{3}-\d{4}/)) {
-                showMessage('Please enter a valid phone number in the format (123) 456-7890.');
-                return;
-            }
+        forms.forEach(form => {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
 
-            const formData = new FormData(form);
-            const formDataObject = Object.fromEntries(formData.entries());
-            
-            // Build the email body from the form data
-            let emailBody = '';
-            for (const [key, value] of Object.entries(formDataObject)) {
-                emailBody += `${key}: ${value}\n`;
-            }
+                const form = e.target;
+                const modalId = form.closest('.modal-overlay').id;
+                const submitButton = form.querySelector('button[type="submit"]');
 
-            let subject = form.id === 'insurance-form' ? 'New Quick Quote Request' : 'New Job Application';
-            let mailtoLink = `mailto:i4wk8z@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
-            
-            window.location.href = mailtoLink;
+                // Basic Phone Validation Check (in case pattern fails)
+                const phoneInput = form.querySelector('input[type="tel"]');
+                if (phoneInput && !phoneInput.value.match(/^\(\d{3}\) \d{3}-\d{4}$/)) {
+                    showMessage('Please enter a valid phone number in the format (123) 456-7890.');
+                    return;
+                }
 
-            // Show a message after a brief delay to allow the mail client to open
-            setTimeout(() => {
-                showMessage('The form has been prepared in your email client. Please review and send!');
-                form.reset();
-                closeModal(form.closest('.modal-overlay').id);
-            }, 500);
-        };
+                submitButton.disabled = true; // Disable button to prevent double-submission
+                submitButton.textContent = 'Sending...';
 
-        document.getElementById('insurance-form').addEventListener('submit', handleFormSubmission);
-        document.getElementById('application-form').addEventListener('submit', handleFormSubmission);
-        
+                const formData = new FormData(form);
+                const action = form.action;
+
+                try {
+                    const response = await fetch(action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json' // Crucial for Formspree AJAX success message
+                        }
+                    });
+
+                    if (response.ok) {
+                        closeModal(modalId);
+                        form.reset();
+                        showMessage('Success! Your form has been submitted and we will be in touch shortly.');
+                    } else {
+                        const data = await response.json();
+                        let message = 'Oops! There was an error submitting your form.';
+                        if (data && data.errors) {
+                             message += ' Please check your inputs and try again.';
+                        }
+                        showMessage(message);
+                    }
+                } catch (error) {
+                    showMessage('An unexpected error occurred. Please try again later.');
+                } finally {
+                    submitButton.disabled = false;
+                    submitButton.textContent = form.id === 'insurance-form' ? 'Get Quote' : 'Submit Application';
+                }
+            });
+        });
+
         // JavaScript for the scroll-triggered animation
         const animateTitles = () => {
             const titles = document.querySelectorAll('.js-animate-title');
@@ -598,5 +581,3 @@
     </script>
 </body>
 </html>
-
-
