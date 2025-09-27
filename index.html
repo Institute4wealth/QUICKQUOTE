@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INSTITUTE4WEALTH | IUL, Tax-Free Wealth & Insurance Agent Jobs</title>
+    <title>INSTITUTE4WEALTH | IUL, Tax-Free Wealth & Financial Agent Jobs</title>
 
-    <meta name="description" content="INSTITUTE4WEALTH offers expert financial planning, tax-free wealth building, and secure Indexed Universal Life (IUL) strategies. Apply to become a licensed Insurance Agent or get a quick life insurance quote today!">
+    <meta name="description" content="INSTITUTE4WEALTH offers expert financial planning, tax-free wealth building, and secure Indexed Universal Life (IUL) strategies. Apply to become a licensed financial agent or get a quick life insurance quote today!">
     
-    <meta name="keywords" content="IUL, Indexed Universal Life, tax-free wealth, retirement planning, Insurance Agent jobs, life insurance quote, infinite banking, asset protection, financial services, financial literacy, Katie">
+    <meta name="keywords" content="IUL, Indexed Universal Life, tax-free wealth, retirement planning, financial agent jobs, life insurance quote, infinite banking, asset protection, financial services, financial literacy, Katie">
 
     <meta property="og:title" content="INSTITUTE4WEALTH & The Queen of Health and Wealth">
     <meta property="og:description" content="A schema-based, SEO-refined website including an application form, a quick quote calculator, and details about Katie's financial planning services, including IULs and tax-free wealth strategies.">
@@ -52,7 +52,19 @@
             padding: 2rem 1rem;
             min-height: 100vh; 
             min-height: 100svh; /* Modern mobile viewport unit */
+            overflow: hidden; /* Important to contain the video */
         }
+        /* New Style for the background video container */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures video covers the entire container */
+            z-index: 0; /* Puts it behind the content */
+        }
+
         /* Tech background particles fixed for scrollable content */
         .scroll-section::before {
             content: '';
@@ -240,7 +252,7 @@
         },
         {
           "@type": "JobPosting",
-          "title": "Licensed Insurance Agent Career",
+          "title": "Licensed Financial Agent Career",
           "description": "Application for a hard-working and ambitious Insurance Agent. No prior experience required.",
           "hiringOrganization": {
             "@type": "Organization",
@@ -264,7 +276,16 @@
 
     <div class="scroll-container">
         <section id="attention" class="scroll-section bg-black flex flex-col justify-center items-center text-center p-0">
-            <div class="bg-black px-8 py-8 sm:px-16 sm:py-16 rounded-xl shadow-lg max-w-sm sm:max-w-xl flex flex-col items-center justify-center">
+            
+            <video class="video-background" 
+                   src="katie-video.mp4" 
+                   playsinline 
+                   autoplay 
+                   muted 
+                   loading="lazy"
+                   poster="placeholder-katie-video.jpg"
+            ></video>
+            <div class="relative z-10 bg-black bg-opacity-70 px-8 py-8 sm:px-16 sm:py-16 rounded-xl shadow-lg max-w-sm sm:max-w-xl flex flex-col items-center justify-center">
                 <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase font-bold text-golden-metallic mb-2 js-animate-title">INSTITUTE4WEALTH</h1>
                 <p class="text-lg sm:text-xl md:text-2xl leading-relaxed max-w-xs sm:max-w-sm mx-auto text-white">Your path to tax-free financial power. This is your one-stop destination for building wealth, securing your future, and protecting the legacy you want to leave behind.</p>
             </div>
@@ -331,7 +352,7 @@
             <div class="max-w-md mx-auto text-center flex flex-col items-center p-2">
                 <h2 class="text-5xl uppercase font-bold text-golden-metallic mb-2 js-animate-title">Get Started Now</h2>
                 <p class="text-xl leading-relaxed text-center text-white mt-4">
-                    Choose your path to securing your financial future or starting a career as a Insurance Agent.
+                    Choose your path to securing your financial future or starting a career as a Financial Agent.
                 </p>
                 <div class="flex flex-col justify-center items-center gap-2 w-full px-2 mb-2 mt-8">
                     <button class="simple-button" onclick="openModal('quote-modal')">Get a Quick Quote</button>
@@ -417,7 +438,7 @@
     <div id="application-modal" class="modal-overlay">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal('application-modal')">&times;</span>
-            <h2 class="text-5xl uppercase font-bold text-golden-metallic text-center">Join Our Insurance Agent Team</h2>
+            <h2 class="text-5xl uppercase font-bold text-golden-metallic text-center">Join Our Financial Agent Team</h2>
             <p class="text-xl text-center text-white mb-4 w-full">We're looking for hardworking individuals to join our team. No experience necessary to start your career as an agent!</p>
             <form id="application-form" class="formspree-form" method="POST" action="https://formspree.io/f/manpqpaa">
                 <label class="text-xl text-white block mb-2" for="app_name">Full Name</label>
@@ -591,4 +612,3 @@
     </script>
 </body>
 </html>
-
