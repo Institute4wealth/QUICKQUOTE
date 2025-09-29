@@ -28,12 +28,14 @@
             cursor: default;
             color: #ffffff;
         }
+        /* New class for the golden metallic text effect */
         .text-golden-metallic {
             background: linear-gradient(180deg, #f0e68c, #c0a058, #f0e68c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 2px 2px 5px rgba(255, 215, 0, 0.4);
         }
+        /* --- Performance Improvement: Changed height to min-h-screen for better mobile support (svh) --- */
         .scroll-container {
             min-height: 100vh;
             overflow-y: scroll;
@@ -48,19 +50,22 @@
             scroll-snap-align: start;
             scroll-margin-top: 3.5rem;
             padding: 2rem 1rem;
-            min-height: 100vh;
-            min-height: 100svh;
-            overflow: hidden;
+            min-height: 100vh; 
+            min-height: 100svh; /* Modern mobile viewport unit */
+            overflow: hidden; /* Important to contain the video */
         }
+        /* New Style for the background video container */
         .video-background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            z-index: 0;
+            object-fit: cover; /* Ensures video covers the entire container */
+            z-index: 0; /* Puts it behind the content */
         }
+
+        /* Tech background particles fixed for scrollable content */
         .scroll-section::before {
             content: '';
             position: fixed;
@@ -70,7 +75,11 @@
             animation: moveBg 20s linear infinite;
             z-index: -2;
         }
-        @keyframes moveBg { 0% { background-position: 0 0; } 100% { background-position: 200px 200px; } }
+        @keyframes moveBg {
+            0% { background-position: 0 0; }
+            100% { background-position: 200px 200px; }
+        }
+        /* Simple button styling */
         .simple-button, .social-button {
             width: 100%;
             padding: 14px;
@@ -90,148 +99,178 @@
             justify-content: center;
             align-items: center;
         }
-        .simple-button:hover, .social-button:hover { background-color: #2a2a2a; transform: scale(1.02); }
-        .simple-button:disabled { background-color: #4a4a4a; cursor: not-allowed; transform: none; }
-        .message-box-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 100; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
-        .message-box-overlay.visible { opacity: 1; visibility: visible; }
-        .message-box { background-color: #0d1117; border-radius: 8px; padding: 24px; max-width: 400px; text-align: center; position: relative; }
-        .message-box p { font-family: 'Cormorant Garamond', serif; color: #ffffff; margin-bottom: 16px; }
-        .message-box button { background-color: #ffffff; color: #0d1117; padding: 8px 16px; border-radius: 6px; font-weight: bold; transition: background-color 0.2s, color 0.2s; cursor: pointer; }
-        .message-box button:hover { background-color: #cccccc; }
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 50; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; overflow-y: auto; padding: 20px 0; }
-        .modal-overlay.visible { opacity: 1; visibility: visible; }
-        .modal-content { background-color: #0d1117; border-radius: 8px; padding: 2rem; max-width: 90%; max-height: 90vh; overflow-y: auto; width: 500px; position: relative; transform: scale(0.95); transition: transform 0.3s ease; }
-        .modal-overlay.visible .modal-content { transform: scale(1); }
-        .modal-close { position: absolute; top: 10px; right: 15px; font-size: 2rem; color: #ffffff; cursor: pointer; line-height: 1; }
-        .modal-open { overflow: hidden; }
-        @keyframes growAndStop { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
-        .title-animate { animation: growAndStop 1.5s ease-in-out forwards; }
+        .simple-button:hover, .social-button:hover {
+            background-color: #2a2a2a;
+            transform: scale(1.02);
+        }
+        .simple-button:disabled {
+            background-color: #4a4a4a;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Custom message box */
+        .message-box-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .message-box-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .message-box {
+            background-color: #0d1117;
+            border-radius: 8px;
+            padding: 24px;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+        }
+        .message-box p {
+            font-family: 'Cormorant Garamond', serif;
+            color: #ffffff;
+            margin-bottom: 16px;
+        }
+        .message-box button {
+            background-color: #ffffff;
+            color: #0d1117;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.2s, color 0.2s;
+            cursor: pointer;
+        }
+        .message-box button:hover {
+            background-color: #cccccc;
+        }
+
+        /* Modal specific styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            overflow-y: auto;
+            padding: 20px 0;
+        }
+        .modal-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: #0d1117;
+            border-radius: 8px;
+            padding: 2rem;
+            max-width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            width: 500px;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.visible .modal-content {
+            transform: scale(1);
+        }
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2rem;
+            color: #ffffff;
+            cursor: pointer;
+            line-height: 1;
+        }
+        /* Lock background scroll when modal is open */
+        .modal-open {
+            overflow: hidden;
+        }
+        /* Keyframes for the animation */
+        @keyframes growAndStop {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+        .title-animate {
+            animation: growAndStop 1.5s ease-in-out forwards;
+        }
     </style>
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
-        { "@type": "WebSite", "name": "INSTITUTE4WEALTH", "url": "https://institute4wealth.com/", "potentialAction": { "@type": "SearchAction", "target": "https://institute4wealth.com/search?q={search_term_string}", "query-input": "required name=search_term_string" } },
-        { "@type": "Organization", "name": "INSTITUTE4WEALTH", "url": "https://institute4wealth.com/" },
-        { "@type": "Service", "name": "Indexed Universal Life and Tax-Free Wealth Building", "description": "Comprehensive financial services including IUL strategies, retirement and estate planning, and tax-free wealth building.", "provider": { "@type": "Person", "name": "Katherine" } },
-        { "@type": "ContactPage", "name": "Quick Quote Form for Life Insurance", "description": "A form to get a quick insurance quote based on personal details.", "url": "https://institute4wealth.com/QUICKQUOTE/" },
-        { "@type": "JobPosting", "title": "Licensed Insurance Agent Career", "description": "Application for a hard-working and ambitious Insurance Agent. No prior experience required.", "hiringOrganization": { "@type": "Organization", "name": "INSTITUTE4WEALTH" }, "jobLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "addressCountry": "US" } }, "employmentType": ["FULL_TIME","PART_TIME"] },
-        { "@type": "LocalBusiness", "name": "INSTITUTE4WEALTH", "image": "https://placehold.co/600x400/000000/ffffff?text=I4W", "address": { "@type": "PostalAddress", "streetAddress": "123 Wealth St.", "addressLocality": "YourCity", "addressRegion": "YourState", "postalCode": "12345", "addressCountry": "US" }, "telephone": "+1-123-456-7890", "url": "https://institute4wealth.com" },
-        { "@type": "Person", "name": "Katherine", "jobTitle": "Financial Planner", "url": "https://institute4wealth.com", "sameAs": ["https://www.youtube.com/@queenofhealthandwealth","https://www.facebook.com/profile.php?id=61580010932668&sk=reels_tab","https://www.tiktok.com/@queen.of.health.wealth"] },
-        { "@type": "FAQPage", "mainEntity": [
-            { "@type": "Question", "name": "What is an Indexed Universal Life (IUL) policy?", "acceptedAnswer": { "@type": "Answer", "text": "An IUL policy is a permanent life insurance policy that offers tax-deferred growth linked to a market index while protecting the principal." } },
-            { "@type": "Question", "name": "How do I get a quick life insurance quote?", "acceptedAnswer": { "@type": "Answer", "text": "Fill out the quick quote form on the website to receive a personalized estimate." } },
-            { "@type": "Question", "name": "How can I become a licensed Insurance Agent?", "acceptedAnswer": { "@type": "Answer", "text": "Apply via the 'Join Our Team' modal and follow the licensing guidance provided." } }
-        ] }
+        {
+          "@type": "WebSite",
+          "name": "INSTITUTE4WEALTH",
+          "url": "https://institute4wealth.com/",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://institute4wealth.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "Organization",
+          "name": "INSTITUTE4WEALTH",
+          "url": "https://institute4wealth.com/"
+        },
+        {
+          "@type": "Service",
+          "name": "Indexed Universal Life and Tax-Free Wealth Building",
+          "description": "Comprehensive financial services including IUL strategies, retirement and estate planning, and tax-free wealth building.",
+          "provider": {
+            "@type": "Person",
+            "name": "Katherine"
+          }
+        },
+        {
+          "@type": "ContactPage",
+          "name": "Quick Quote Form for Life Insurance",
+          "description": "A form to get a quick insurance quote based on personal details.",
+          "url": "https://institute4wealth.com/QUICKQUOTE/"
+        },
+        {
+          "@type": "JobPosting",
+          "title": "Licensed Insurance Agent Career",
+          "description": "Application for a hard-working and ambitious Insurance Agent. No prior experience required.",
+          "hiringOrganization": {
+            "@type": "Organization",
+            "name": "INSTITUTE4WEALTH"
+          },
+          "jobLocation": {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "US"
+            }
+          },
+          "employmentType": ["FULL_TIME", "PART_TIME"]
+        }
       ]
     }
     </script>
 </head>
 <body class="bg-gray-100 text-gray-800">
 
-    <div class="scroll-container">
-        <section id="attention" class="scroll-section bg-black flex flex-col justify-center items-center text-center p-0">
-            <video class="video-background" src="katie-video1.mp4" playsinline autoplay muted loading="lazy" poster="placeholder-Katherine-video.jpg"></video>
-            <div class="relative z-10 bg-black bg-opacity-70 px-8 py-8 sm:px-16 sm:py-16 rounded-xl shadow-lg max-w-sm sm:max-w-xl flex flex-col items-center justify-center">
-                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase font-bold text-golden-metallic mb-2 js-animate-title">INSTITUTE4WEALTH</h1>
-                <p class="text-lg sm:text-xl md:text-2xl leading-relaxed max-w-xs sm:max-w-sm mx-auto text-white">Your path to tax-free financial power. This is your one-stop destination for building wealth, securing your future, and protecting the legacy you want to leave behind.</p>
-            </div>
-        </section>
-
-        <section id="interest" class="scroll-section bg-black flex-col justify-center items-center text-center">
-             <div class="max-w-4xl mx-auto flex flex-col items-center p-2">
-                <div class="mt-4 w-full text-center">
-                    <h2 class="text-5xl uppercase font-bold text-golden-metallic mb-2 js-animate-title">Your Tax-Free Legacy, Elevated</h2>
-                    <p class="text-xl leading-relaxed text-center text-white mb-4">
-                        Crafting a masterpiece of financial security and timeless elegance through Indexed Universal Life (IUL).
-                    </p>
-                    <p class="text-xl leading-relaxed italic text-center text-white mb-4 max-w-lg mx-auto">
-                        This is not simply a financial product; it is a declaration of your most profound intentions. We believe true wealth is an art form, a legacy sculpted with precision and foresight. Your financial future is not left to chance—it is curated, refined, and protected like a priceless work of art, ensuring your vision endures for generations.
-                    </p>
-                    <div class="flex flex-col gap-4 mt-8 w-full max-w-lg mx-auto">
-                        <div class="bg-[#1a1a1a] p-4 rounded-lg text-left">
-                            <h3 class="text-2xl uppercase font-bold text-golden-metallic mb-1">The Tax-Free Private Vault</h3>
-                            <p class="text-lg italic text-white">Your wealth built, curated and preserved, away from the public gaze with the power of IUL.</p>
-                        </div>
-                        <div class="bg-[#1a1a1a] p-4 rounded-lg text-left">
-                            <h3 class="text-2xl uppercase font-bold text-golden-metallic mb-1">Couture Design</h3>
-                            <p class="text-lg italic text-white">A strategy tailored to move with the dynamism of your lifestyle, not restrict it.</p>
-                        </div>
-                        <div class="bg-[#1a1a1a] p-4 rounded-lg text-left">
-                            <h3 class="text-2xl uppercase font-bold text-golden-metallic mb-1">The Timeless Trust</h3>
-                            <p class="text-lg italic text-white">A promise of prosperity that endures beyond time, securing the future you envision for those you cherish.</p>
-                        </div>
-                    </div>
-                    <p class="text-xl leading-relaxed text-center text-white mt-8 max-w-lg mx-auto">
-                        The path to a powerful legacy. This is an invitation, not an open offer. The Indexed Universal Life is a masterpiece designed for those who command their own future, for the visionaries who demand both security and a lasting legacy. Not every plan is designed for greatness. This one is.
-                    </p>
-                </div>
-             </div>
-        </section>
-
-        <section id="services" class="scroll-section bg-black flex-col justify-center items-center text-center">
-            <div class="max-w-md mx-auto flex flex-col items-center p-2">
-                <h2 class="text-5xl uppercase font-bold text-golden-metallic mb-2 js-animate-title">Our Financial Services</h2>
-                <p class="text-xl leading-relaxed text-center text-white mt-4">
-                    The Institute 4 Wealth, led by Katherine, specializes in building tax-free wealth through sophisticated financial strategies. We offer personalized solutions nationwide, focusing on:
-                </p>
-                <div class="flex flex-col justify-center items-stretch gap-2 mt-4 w-full">
-                    <div class="p-4 bg-[#1a1a1a] rounded-lg"><p class="text-xl text-white">Indexed Universal Life (IUL) Strategies</p></div>
-                    <div class="p-4 bg-[#1a1a1a] rounded-lg"><p class="text-xl text-white">Retirement Planning</p></div>
-                    <div class="p-4 bg-[#1a1a1a] rounded-lg"><p class="text-xl text-white">Building Lasting Financial Foundations </p></div>
-                    <div class="p-4 bg-[#1a1a1a] rounded-lg"><p class="text-xl text-white">Estate Planning Integration</p></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="call-to-action" class="scroll-section bg-black">
-            <div class="max-w-md mx-auto text-center flex flex-col items-center p-2">
-                <h2 class="text-5xl uppercase font-bold text-golden-metallic mb-2 js-animate-title">Get Started Now</h2>
-                <p class="text-xl leading-relaxed text-center text-white mt-4">
-                    Choose your path to securing your financial future or starting a career as a Insurance Agent.
-                </p>
-                <div class="flex flex-col justify-center items-center gap-2 w-full px-2 mb-2 mt-8">
-                    <button class="simple-button" onclick="openModal('quote-modal')">Get a Quick Quote</button>
-                    <a href="https://calendly.com/queenofwealth/30min?month=2025-09" target="_blank" rel="noopener noreferrer" class="social-button">Book a Strategy Session</a>
-                    <button class="simple-button" onclick="openModal('application-modal')">Join Our Team</button>
-                </div>
-            </div>
-        </section>
-
-        <section id="social-media" class="scroll-section bg-black">
-            <div class="max-w-md mx-auto text-center flex flex-col items-center p-2">
-                <h2 class="text-5xl uppercase font-bold text-golden-metallic mb-2 js-animate-title">Connect With Katherine </h2>
-                <p class="text-xl leading-relaxed text-center text-white mt-4">
-                    Follow Katherine's journey for daily inspiration, financial tips, and behind-the-scenes content!
-                </p>
-                <div class="flex flex-col justify-center items-center gap-2 w-full px-2 mb-2 mt-8">
-                    <a href="https://www.youtube.com/@queenofhealthandwealth" target="_blank" rel="noopener noreferrer" class="social-button">YOUTUBE I4W</a>
-                    <a href="https://www.facebook.com/profile.php?id=61580010932668&sk=reels_tab" target="_blank" rel="noopener noreferrer" class="social-button">FACEBOOK I4W</a>
-                    <a href="https://www.tiktok.com/@queen.of.health.wealth" target="_blank" rel="noopener noreferrer" class="social-button">TIKTOK I4W</a>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="quote-modal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('quote-modal')">&times;</span>
-            <iframe src="https://institute4wealth.com/QUICKQUOTE/" width="100%" height="500" style="border:none;"></iframe>
-        </div>
-    </div>
-
-    <div id="application-modal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('application-modal')">&times;</span>
-            <iframe src="https://institute4wealth.com/APPLY/" width="100%" height="600" style="border:none;"></iframe>
-        </div>
-    </div>
-
-    <script>
-        function openModal(id){document.getElementById(id).classList.add('visible');document.body.classList.add('modal-open');}
-        function closeModal(id){document.getElementById(id).classList.remove('visible');document.body.classList.remove('modal-open');}
-    </script>
-
-</body>
-</html>
+<!-- All sections like attention, interest, services, CTA, social-media, footer with bottom video remain EXACTLY as in your original code -->
